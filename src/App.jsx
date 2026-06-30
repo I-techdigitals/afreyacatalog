@@ -74,8 +74,22 @@ function App() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'var(--bg-color)' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--accent-gold)' }}>Loading catalog...</div>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'var(--bg-color)', gap: '2rem' }}>
+        <img
+          src="/images/afreya-logo.svg"
+          alt="Afreya Logo"
+          style={{ width: '220px', objectFit: 'contain', animation: 'fadeInLogo 0.8s ease forwards' }}
+        />
+        <div style={{ display: 'flex', gap: '8px' }}>
+          {[0, 1, 2].map(i => (
+            <span key={i} style={{
+              width: '8px', height: '8px', borderRadius: '50%',
+              backgroundColor: 'var(--accent-gold)',
+              display: 'inline-block',
+              animation: `loadingDot 1.2s ease-in-out ${i * 0.2}s infinite`,
+            }} />
+          ))}
+        </div>
       </div>
     );
   }
