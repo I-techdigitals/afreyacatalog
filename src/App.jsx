@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { BookViewer } from './components/BookViewer';
 import { NavigationOverlay } from './components/NavigationOverlay';
-import { ContactSpreadLeft, ContactSpreadRight } from './components/ContactSpread';
+
 import { usePdfLoader } from './utils/usePdfLoader';
 import { supabase } from './lib/supabase';
 import './index.css';
@@ -100,8 +100,7 @@ function App() {
     }
   });
 
-  catalogPages.push(<ContactSpreadLeft  key="contact-1" />);
-  catalogPages.push(<ContactSpreadRight key="contact-2" />);
+
 
   // react-pageflip requires an even number of pages
   if (catalogPages.length > 2 && catalogPages.length % 2 !== 0) {
