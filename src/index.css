@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --font-serif: 'Cinzel', serif;
+  --font-sans: 'Inter', sans-serif;
+  --bg-color: #faf9f6;
+  /* Soft off-white for luxury feel */
+  --text-main: #1a1a1a;
+  --text-muted: #666;
+  --accent-gold: #c5a059;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-book: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page Flip Overrides */
+.stf__wrapper {
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.18));
+}
+
+.page {
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Simulate the crease/gutter in the middle */
+.page.-left {
+  /* Removed border and shadow for a seamless spread */
+}
+
+.page.-right {
+  /* Removed border and shadow for a seamless spread */
+}
+
+.page-cover {
+  background-color: #111;
+  color: var(--accent-gold);
+}
+
+.page-cover-front {
+  box-shadow: inset -10px 0 30px -10px rgba(255, 255, 255, 0.1);
+}
+
+.page-cover-back {
+  box-shadow: inset 10px 0 30px -10px rgba(255, 255, 255, 0.1);
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.page.-left .page-number {
+  left: 20px;
+}
+
+.page.-right .page-number {
+  right: 20px;
+}
+
+/* Book Depth Effect (Thickness) - Removed shadow effect */
+.page::after {
+  /* content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.03));
+  pointer-events: none; */
+}
+
+.page.-left::after {
+  /* right: 0; */
+}
+
+.page.-right::after {
+  /* left: 0;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.03)); */
+}
+
+/* UI Elements */
+.nav-overlay {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 100;
+  align-items: center;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.nav-btn:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.nav-status {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Catalog Typography & Layout */
+.catalog-page {
+  padding: 60px;
+  height: 100%;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-heading {
+  font-family: var(--font-sans);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.catalog-subheading {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 50px;
+}
+
+/* Table of Contents */
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.toc-label {
+  white-space: nowrap;
+}
+
+.toc-leader {
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+  margin: 0 15px;
+}
+
+.toc-page {
+  color: #888;
+}
+
+/* Our Brief Text */
+.brief-text {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 2;
+  color: #666;
+  text-align: justify;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 40px;
+  height: 100%;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-title {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.product-layout {
+  display: flex;
+  gap: 30px;
+  height: 100%;
+}
+
+.product-image {
+  flex: 1;
+  background-color: #f5f5f5;
+  object-fit: cover;
+  width: 50%;
+}
+
+.product-specs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+
+.spec-label {
+  color: #888;
+}
+
+.spec-value {
+  color: #444;
+  text-align: right;
+}
+
+/* Highlight Spread */
+.highlight-layout {
+  display: flex;
+  height: 100%;
+  gap: 40px;
+}
+
+.highlight-image-main {
+  flex: 1.5;
+  background-color: #f5f5f5;
+  object-fit: cover;
+  height: 100%;
+}
+
+.highlight-sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.highlight-image-small {
+  height: 250px;
+  background-color: #f5f5f5;
+  object-fit: cover;
+  width: 100%;
+}
