@@ -320,3 +320,36 @@ body {
   object-fit: cover;
   width: 100%;
 }
+
+/* Product Link Hotspots */
+.product-link-hotspot {
+  z-index: 10;
+  display: block;
+  cursor: pointer;
+  background-color: rgba(197, 160, 89, 0);
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+
+.product-link-hotspot:hover {
+  background-color: rgba(197, 160, 89, 0.2);
+}
+
+/* Page loading shimmer placeholder */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.page-loading-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #e8e0d5 25%,
+    #f5f0eb 50%,
+    #e8e0d5 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}

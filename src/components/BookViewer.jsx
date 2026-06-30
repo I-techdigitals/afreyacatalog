@@ -53,7 +53,7 @@ function useAdaptiveSize(dimensions) {
   return size;
 }
 
-export const BookViewer = React.forwardRef(({ pages, dimensions, onPageChange }, ref) => {
+export const BookViewer = React.forwardRef(({ pages, dimensions, onPageChange, catalogLinks = [] }, ref) => {
   if (!pages || pages.length === 0) return null;
 
   const { width, height } = useAdaptiveSize(dimensions);
@@ -63,9 +63,14 @@ export const BookViewer = React.forwardRef(({ pages, dimensions, onPageChange },
     // Even index = left page of a spread; odd index = right page
     const isLeft = index % 2 === 0;
 
+    const linksForPage = catalogLinks.filter(l => l.pageIndex === index);
+
     return (
       <Page key={`page-${index}`} isLeft={isLeft} number={index + 1}>
-        {isImage ? (
+        {pageContent === null ? (
+          // Still loading — show a shimmer placeholder
+          <div className="page-loading-shimmer" />
+        ) : isImage ? (
           <img
             src={pageContent}
             alt={`Page ${index + 1}`}
@@ -74,6 +79,24 @@ export const BookViewer = React.forwardRef(({ pages, dimensions, onPageChange },
         ) : (
           pageContent
         )}
+
+        {linksForPage.map((link, i) => (
+          <a
+            key={`link-${i}`}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="product-link-hotspot"
+            title={`View ${link.title} on website`}
+            style={{
+              position: 'absolute',
+              top: link.rect.top,
+              left: link.rect.left,
+              width: link.rect.width,
+              height: link.rect.height,
+            }}
+          />
+        ))}
       </Page>
     );
   });
