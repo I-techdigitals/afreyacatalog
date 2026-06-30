@@ -107,7 +107,7 @@ function App() {
   pdfImages.forEach((src, i) => {
     if (dimensions.isLandscape) {
       // Each landscape spread → left page + right page displayed together
-      catalogPages.push(<SpreadLeft  key={`pdf-${i}-L`} src={src} />);
+      catalogPages.push(<SpreadLeft key={`pdf-${i}-L`} src={src} />);
       catalogPages.push(<SpreadRight key={`pdf-${i}-R`} src={src} />);
     } else {
       catalogPages.push(src);
