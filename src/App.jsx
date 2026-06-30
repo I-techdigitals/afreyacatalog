@@ -3,9 +3,15 @@ import { BookViewer } from './components/BookViewer';
 import { NavigationOverlay } from './components/NavigationOverlay';
 import { ContactSpreadLeft, ContactSpreadRight } from './components/ContactSpread';
 import { usePdfLoader } from './utils/usePdfLoader';
+import { supabase } from './lib/supabase';
 import './index.css';
 
-const PDF_URL = '/images/Beige Neutral Minimalist Furniture Catalog Presentation.pdf';
+// Fetch the public URL from your Supabase storage bucket
+const { data } = supabase.storage.from('catalogpdf').getPublicUrl('catalog.pdf');
+const PDF_URL = data.publicUrl;
+
+// If you need to fallback to the local file before uploading, uncomment this:
+// const PDF_URL = '/images/Beige Neutral Minimalist Furniture Catalog Presentation.pdf';
 
 /**
  * LEFT half of a landscape spread.
