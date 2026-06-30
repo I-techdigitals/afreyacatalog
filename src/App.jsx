@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { BookViewer } from './components/BookViewer';
 import { NavigationOverlay } from './components/NavigationOverlay';
+import { OrientationPrompt } from './components/OrientationPrompt';
 
 import { usePdfLoader } from './utils/usePdfLoader';
 import { supabase } from './lib/supabase';
@@ -126,6 +127,7 @@ function App() {
 
   return (
     <>
+      <OrientationPrompt />
       <BookViewer
         ref={bookRef}
         pages={catalogPages}

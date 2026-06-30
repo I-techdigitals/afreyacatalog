@@ -383,3 +383,158 @@ body {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
+
+/* Orientation Prompt Modal */
+.orientation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.orientation-modal {
+  background-color: var(--bg-color);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 340px;
+  padding: 32px 24px 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.orientation-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.orientation-close:hover {
+  background-color: rgba(197, 160, 89, 0.1);
+  color: var(--accent-gold);
+}
+
+.orientation-brand {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.orientation-logo {
+  height: 32px;
+  object-fit: contain;
+}
+
+.orientation-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(197, 160, 89, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.orientation-icon {
+  color: var(--accent-gold);
+  animation: rotateIcon 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  50%, 100% {
+    transform: rotate(90deg);
+  }
+}
+
+.orientation-modal h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.orientation-modal p {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.orientation-btn {
+  width: 100%;
+  background-color: var(--accent-gold);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);
+}
+
+.orientation-btn:hover {
+  background-color: #b59049;
+}
+
+.orientation-btn:active {
+  transform: scale(0.98);
+}
+
+.orientation-skip {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  margin-top: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.orientation-skip:hover {
+  opacity: 1;
+  color: var(--text-main);
+}
